@@ -1,0 +1,1 @@
+/data/dotfiles/subvim/vim/base/vimrc
