@@ -1,0 +1,27 @@
+# Install GUI apps
+# Usage: `brew bundle /path/to/Caskfile`
+
+# Install Cask
+install caskroom/cask/brew-cask
+tap caskroom/versions
+
+# Install Casks
+cask install alfred
+cask install appcleaner
+cask install beatport-pro
+cask install caffeine
+cask install flash-player
+cask install flux
+cask install google-chrome
+cask install iterm2
+cask install silverlight
+cask install skype
+cask install spectacle
+cask install spotify
+cask install sequel-pro
+cask install sublime-text
+cask install the-unarchiver
+cask install transmission
+cask install vlc
+cask install virtualbox
+cask install vagrant
