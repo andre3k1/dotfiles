@@ -1,6 +1,8 @@
-" Use Vim settings, rather then Vi settings. This setting must be as early as
-" possible, as it has side effects.
-set nocompatible
+set nocompatible " be iMproved, required by Vundle
+filetype off     " also required by Vundle
+
+set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle
+call vundle#begin()               # initialize Vundle
 
 " Leader
 let mapleader = " "
@@ -43,19 +45,14 @@ augroup vimrcEx
   autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
   autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
 
-  " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  " Settings for Markdown
+  autocmd BufRead,BufNewFile *.md set filetype=markdown " Setup syntax highlighting
+  autocmd FileType markdown setlocal spell              " Enable spellchecking
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80 " Wrap at 80 characters
 
-  " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
-
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-
-  " Automatically wrap at 72 characters and spell check git commit messages
-  autocmd FileType gitcommit setlocal textwidth=72
-  autocmd FileType gitcommit setlocal spell
+  " Settings for git commit messages
+  autocmd FileType gitcommit setlocal textwidth=72 " Wrap at 72 characters
+  autocmd FileType gitcommit setlocal spell        " Enable spellchecking
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
@@ -113,7 +110,7 @@ inoremap <S-Tab> <c-n>
 " Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
-" Index ctags from any project, including those outside Rails
+" Index ctags from any project
 map <Leader>ct :!ctags -R .<CR>
 
 " Switch between the last two files
@@ -124,11 +121,6 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
-
-" vim-rspec mappings
-nnoremap <Leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <Leader>s :call RunNearestSpec()<CR>
-nnoremap <Leader>l :call RunLastSpec()<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
@@ -152,7 +144,7 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-set spellfile=$HOME/.vim-spell-en.utf-8.add
+" set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Always use vertical diffs
 set diffopt+=vertical
