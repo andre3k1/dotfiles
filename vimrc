@@ -2,7 +2,7 @@ set nocompatible " be iMproved, required by Vundle
 filetype off     " also required by Vundle
 
 set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle
-call vundle#begin()               # initialize Vundle
+call vundle#begin()               " initialize Vundle
 
 " Leader
 let mapleader = " "
